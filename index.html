@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quieres ser mi San Valentin</title>
+    <link rel="shortcut icon" href="./heart.ico" />
+
+    <style>
+
+        body{
+            background-color: aquamarine;
+        }
+        img{
+            max-height: 95%;
+        }
+        h2{
+            text-align: center;
+        }
+        button{
+            padding: 15px; 
+            color: aliceblue;
+            font-size: 15px;
+            margin: 0 2rem 0 2rem
+        }
+        /*Definimos los estilos para la clase image-container*/
+        .image-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 25rem;
+        }
+        .buttons-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="image-container">
+        <img src="./image.jpeg" alt="Imagen ternurin">
+    </div>
+    <div>
+        <h2>¿Quieres se mi San Valentin</h2>
+    </div>
+    <div class="buttons-container">
+        <button id="yes" style="background-color: green;" onclick="checkAnswerYes()">Si</button>
+        <button id="no" style="background-color: red;" onclick="checkAnswerNo()">No</button>
+    </div>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    let contador = 0
+    
+    function checkAnswerYes(){
+        Swal.fire({
+            title: 'Yupiii!',
+            text: 'Sabía que dirias que sí, vamos a una cafetería bien hermosa, TE AMO',
+            icon: 'success',
+            confirmButtonText: 'Te amo tambien'
+        })
+    }
+
+    function checkAnswerNo(){    
+
+        //Generamos una lista con las frases para el No Button
+        const noFrases = [
+            "¿Segura?", 
+            "¿De veritas, de veritas?",
+            "Piensalo bien",
+            "Me voy a poner muy triste",
+            "Pero enserio",
+            "Tienes otras oportunidad",
+            "Por favor, di que si",
+            "Ya me puse triste"
+        ]
+
+        //Obtenemos el DOM de los botones
+        let yesButton = document.getElementById("yes");
+        let noButton = document.getElementById("no");
+
+        // Obtener los valores actuales de padding y font-size
+        let paddingActual = parseInt(window.getComputedStyle(yesButton).paddingTop);
+        let fontSizeActual = parseInt(window.getComputedStyle(yesButton).fontSize);
+
+        // Incrementar ambos valores en 1
+        let nuevoPadding = paddingActual + 10;
+        let nuevoFontSize = fontSizeActual + 10;
+
+        // Aplicar los nuevos estilos al elemento
+        yesButton.style.padding = nuevoPadding + "px";
+        yesButton.style.fontSize = nuevoFontSize + "px";
+
+        if (contador == 7){
+            contador = 0
+        }else{
+            noButton.textContent = noFrases[contador]
+            contador = contador + 1
+        }
+
+    }
+
+</script>
+
+
+</html>
